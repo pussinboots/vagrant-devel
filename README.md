@@ -18,7 +18,7 @@ because i couldn't rember how to setup some specific development tools like sbt 
 
 ##Contribute
 
-During this setup it rise the idea to launch a service where developer can search for vagrant boxes that offer a complete environment for programming language x or project x. So that it easy to build a project by just start the vagrant box for it with just one click or command and begin with the development. Please contact me pussinboots666@googlemail.com if you like this idea and maybe want to contribute on it.
+During this setup it rise the idea to launch a service where developer can search for vagrant boxes that offer a complete environment for programming language x or project x. So that it easy to build a project by just start the vagrant box for it with just one click or command and begin with the development. Please contact me pussinboots666@googlemail.com if you like this idea and maybe want to contribute on it. Started this development look here [vagrant-git](https://github.com/pussinboots/vagrant-git). It is a very simple approach but simple could be good. Should be easy to maintain because it start's as little development tool and i want to keep the needed maintainace low.
 
 ##Todo
 
