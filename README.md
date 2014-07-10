@@ -49,7 +49,7 @@ Ubuntu 14.04 with default window manager (the 3d support for virtual box use sof
 4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time)
 5. start provision ```vagrant provision``` first run will fail because java installation need your interaction
 6. you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
-7. start provision ```vagrant provision``` second time this will install the rest
+7. start provision ```vagrant provision``` second time this will install the rest could also take a while because install idea, play and the complete texlive latex distribution (near 600 MB download)
 
 ##Vagrantfile
 
