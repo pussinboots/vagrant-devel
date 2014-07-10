@@ -13,6 +13,25 @@ bash provider look into the provider folder. The vagrant base box is upload to [
 * installed [vagrant](http://www.vagrantup.com/downloads.html)
 * installed [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
+##Base Box
+
+A tutorial to create a vagrant base box look [here](https://docs.vagrantup.com/v2/boxes/base.html).
+
+###Vagrant
+
+* setup with the ssh key used by vagrant 
+* no chef or puppet installed
+
+###User
+
+* username: vagrant
+* password: vagrant
+* has sudo rights
+
+###Operating System
+
+Ubuntu 14.04 with default window manager (the 3d support for virtual box use software rendering that cause the default window manager to consume a lot of cpu ticks). The provisioner install the gnome-session-flashback (2d) window manager as an alternative.
+
 ##Usage
 
 1. clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
@@ -34,16 +53,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "provision/provision.sh"
  
   config.vm.provider :virtualbox do |vb|
-     	vb.gui = true
-	    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-	    vb.customize ["modifyvm", :id, "--vram", "128"]
-      vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
-      vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-      vb.customize ["modifyvm", :id, "--ioapic", "on"]
-	    vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
-	    vb.memory = 3072
-	    vb.cpus = 2
+	vb.gui = true
+	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+	vb.customize ["modifyvm", :id, "--vram", "128"]
+	vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
+	vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+	vb.customize ["modifyvm", :id, "--ioapic", "on"]
+	vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+	vb.memory = 3072
+	vb.cpus = 2
   end
 end
 ```
@@ -84,9 +103,10 @@ Simple bash script that install follow things in that order
 * nvm ```wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.10.0/install.sh | sh```
 * nodejs ```nvm install 0.10.28```
 * travis ```sudo gem install travis```
+* gnome-session-flashback ```yes "" | sudo apt-get -f install  gnome-session-flashback```
 * softcover ```sudo gem install softcover```
-* texlive latex distribution ```sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra```
-* inkscape ```sudo apt-get install inkscape```
+* texlive latex distribution ``yes "" | sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra```
+* inkscape ```yes "" | sudo apt-get install inkscape```
 * calibre ```sudo python -c "import sys; py3 = sys.version_info[0] > 2; u = __import__('urllib.request' if py3 else 'urllib', fromlist=1); exec(u.urlopen('http://status.calibre-ebook.com/linux_installer').read()); main(install_dir='`echo ~`')"```
 * epubcheck ```curl -O -L https://github.com/IDPF/epubcheck/releases/download/v3.0/epubcheck-3.0.zip && unzip epubcheck-3.0.zip```
 * kindlegen ```curl -o /home/vagrant/bin http://softcover-binaries.s3.amazonaws.com/kindlegen && chmod +x /home/vagrant/bin/kindlegen```
