@@ -5,7 +5,14 @@ Setup a ready to use vagrant box for Scala and nodejs with Ubuntu 14.04 base box
 Ubuntu 14.04 truly version without any additional development packages. For the development packages there is a simple
 bash provider look into the provider folder. The vagrant base box is upload to [vagrantcloud.com](https://vagrantcloud.com/).
 
+##Login Shell Problem
+
+There is a problem with nodejs and npm when you open a terminal.
+The workaround is to run ```su -l vagrant```enter the password vagrant and than npm and nodejs 
+can be used. Has to be done for every terminal. Maybe someone has a complete solution for that.
+
 ##Todo
+
 * by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
 
 ##Requirements
