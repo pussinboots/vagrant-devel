@@ -5,10 +5,20 @@ Setup a ready to use vagrant box for Scala and nodejs with Ubuntu 14.04 base box
 Ubuntu 14.04 truly version without any additional development packages. For the development packages there is a simple
 bash provider look into the provider folder.
 
+##Requirements
+
+* installed [vagrant](http://www.vagrantup.com/downloads.html)
+* installed [virtualbox](https://www.virtualbox.org/wiki/Downloads)
+
 ##Usage
 
 1) clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
+2) ```cd vagrant-devel```
 2) adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things
+3) start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time)
+4) start provision ```vagrant provision``` first run will fail because java installation need your interaction
+5) you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
+6) start provision ```vagrant provision``` second time this will install the rest
 
 
 ##Provisioner
