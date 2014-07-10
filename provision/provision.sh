@@ -10,10 +10,9 @@ else
 	apt-get install python-software-properties
 	add-apt-repository ppa:webupd8team/java
 	apt-get update -qq
+	#apt-get install oracle-java7-installer # enable this to install a specific version of java java 8 is the default
 	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 fi
-
-#apt-get install oracle-java7-installer
 
 apt-get install htop
 # install git
