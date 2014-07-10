@@ -18,6 +18,7 @@ can be used. Has to be done for every terminal. Maybe someone has a complete sol
 ##Requirements
 
 * installed [vagrant](http://www.vagrantup.com/downloads.html)
+* installed [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) ```vagrant plugin install vagrant-vbguest```
 * installed [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
 ##Base Box
