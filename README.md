@@ -17,12 +17,58 @@ bash provider look into the provider folder. The vagrant base box is upload to [
 
 1. clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
 2. ```cd vagrant-devel```
+3. look into the Vagrantfile and adapt if it nessary like reduce or increase memory
 3. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things.
 4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time)
 5. start provision ```vagrant provision``` first run will fail because java installation need your interaction
 6. you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
 7. start provision ```vagrant provision``` second time this will install the rest
 
+##Vagrantfile
+
+Short explanation of the used Vagrantfile.
+```ruby
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "pussinboots/ubuntu-truly"
+  config.vm.provision :shell, :path => "provision/provision.sh"
+ 
+  config.vm.provider :virtualbox do |vb|
+     	vb.gui = true
+	    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+	    vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
+      vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+      vb.customize ["modifyvm", :id, "--ioapic", "on"]
+	    vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+	    vb.memory = 3072
+	    vb.cpus = 2
+  end
+end
+```
+
+This configure vagrant to use the  [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly) hosted base base. 
+```ruby
+config.vm.box = "pussinboots/ubuntu-truly"
+```
+
+Adapt the following configuration to increase or reduce the memory (in MB) or cpus that the VM will use. 
+```ruby
+vb.memory = 3072
+vb.cpus = 2
+```
+
+The virtual box specific configuration for an explanation of each parameter look [here](https://www.virtualbox.org/manual/ch08.html).
+```ruby
+vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+vb.customize ["modifyvm", :id, "--vram", "128"] # memory for the graphic card
+vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"] 
+vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+vb.customize ["modifyvm", :id, "--ioapic", "on"]
+vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+```
 
 ##Provisioner
 
