@@ -3,7 +3,10 @@ vagrant-devel
 
 Setup a ready to use vagrant box for Scala and nodejs with Ubuntu 14.04 base box. The base box only contains the 
 Ubuntu 14.04 truly version without any additional development packages. For the development packages there is a simple
-bash provider look into the provider folder.
+bash provider look into the provider folder. The vagrant base box is upload to [vagrantcloud.com](https://vagrantcloud.com/).
+
+##Todo
+* by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
 
 ##Requirements
 
@@ -41,5 +44,3 @@ Simple bash script that install follow things in that order
 * calibre ```sudo python -c "import sys; py3 = sys.version_info[0] > 2; u = __import__('urllib.request' if py3 else 'urllib', fromlist=1); exec(u.urlopen('http://status.calibre-ebook.com/linux_installer').read()); main(install_dir='`echo ~`')"```
 * epubcheck ```curl -O -L https://github.com/IDPF/epubcheck/releases/download/v3.0/epubcheck-3.0.zip && unzip epubcheck-3.0.zip```
 * kindlegen ```curl -o /home/vagrant/bin http://softcover-binaries.s3.amazonaws.com/kindlegen && chmod +x /home/vagrant/bin/kindlegen```
-
-Upload vagrant base box to [vagrantcloud.com](https://vagrantcloud.com/)
