@@ -11,6 +11,11 @@ There is a problem with nodejs and npm when you open a terminal.
 The workaround is to run ```su -l vagrant```enter the password vagrant and than npm and nodejs 
 can be used. Has to be done for every terminal. Maybe someone has a complete solution for that.
 
+##Motivation
+
+Easy to setup Ubuntu based development environment. The complete new setup of development machine cause me in the past some headaches
+because i couldn't rember how to setup some specific development tools like sbt or so. And accidently i removed sometimes my complete adapted development vm. So i decided to automate this setup completly so i will have problem anymore to setup a clean full development environment that contains all tools i loved and i need. Feel free to fork this repository and adapt it to your own needs maybe it is possible to setup a page like vagrantcloud did where every developer can upload his development environment based on vagrant.
+
 ##Todo
 
 * by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
