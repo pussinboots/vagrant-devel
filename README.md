@@ -12,13 +12,13 @@ bash provider look into the provider folder.
 
 ##Usage
 
-. clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
-. ```cd vagrant-devel```
-. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things
-. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time)
-. start provision ```vagrant provision``` first run will fail because java installation need your interaction
-. you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
-. start provision ```vagrant provision``` second time this will install the rest
+1. clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
+2. ```cd vagrant-devel```
+3. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things.
+4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time)
+5. start provision ```vagrant provision``` first run will fail because java installation need your interaction
+6. you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
+7. start provision ```vagrant provision``` second time this will install the rest
 
 
 ##Provisioner
