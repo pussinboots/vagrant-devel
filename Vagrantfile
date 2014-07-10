@@ -3,7 +3,8 @@
 
 Vagrant.configure("2") do |config|
   
-  config.vm.box = "Ubuntu-LTS-1404-Desktop"
+  #config.vm.box = "Ubuntu-LTS-1404-Desktop"
+  config.vm.box = "pussinboots/ubuntu-truly"
   config.vm.provision :shell, :path => "provision/provision.sh"
  
   config.vm.provider :virtualbox do |vb|
