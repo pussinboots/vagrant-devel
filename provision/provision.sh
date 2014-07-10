@@ -1,5 +1,99 @@
 #!/bin/sh
 
+if which java >/dev/null; then
+    echo "skip add-apt-repository for oracle java"
+else
+	echo "apt repo addef for java now install manual with sudo apt-get -f install"
+fi
+
+if [ -f /home/vagrant/.ssh/config ]; then
+	echo "skip generate ssh key"
+else
+	echo "generate ssh key that have to be uploaded to github"
+fi
+
+if [ -d "/home/vagrant/workspace/devel/idea" ]; then
+    echo "skip idea 13 installation"
+else
+	echo "idea 13 installation"
+fi
+
+if which cs >/dev/null; then
+    echo "skip sublime 3 installation"
+else
+	echo "sublime 3 installation"
+fi
+
+if which play >/dev/null; then
+	echo "skip play 2.2.3 installation"
+else
+	echo "install play 2.2.3"
+fi
+
+if which cs >/dev/null; then
+    echo "skip conscript installation"
+else
+	echo "install conscript"
+fi
+
+if which sbt >/dev/null; then
+	echo "skip sbt installation"
+else
+	echo "sbt installation"
+fi
+
+if which heroku >/dev/null; then
+    echo "skip heroku installation"
+else
+    echo "heroku installation"
+fi
+
+if su -l vagrant -c "nvm >/dev/null"; then
+    echo "skip nodejs installation"
+else
+	echo "nodejs installation"
+fi
+
+if which travis >/dev/null; then
+    echo "skip travis installation"
+else
+	echo "install travis"
+fi
+
+if which softcover >/dev/null; then
+    echo "skip softcover installation"
+else
+	echo "softcover installation"
+fi
+
+echo "softcover dependency installation performed with apt-get"
+
+if which calibre >/dev/null; then
+    echo "skip calibre installation"
+else
+	echo "calibre installation"
+fi
+
+if [ -d "/home/vagrant/bin/epubcheck-3.0" ]; then
+	echo "skip epubcheck installation"
+else
+	echo "install epubcheck 3.0 for softcover"
+fi
+
+if [ -f "/home/vagrant/bin/kindlegen" ]; then
+	echo "skip kindlegen installation"
+else
+	echo "install kindlegen for softcover"
+fi
+
+if which softcover >/dev/null; then
+    echo "check if the softcover dependencies are satisfied"
+	su -l vagrant -c "softcover check"
+fi
+
+echo "wait for 10 seconds break with Ctrl-C"
+sleep 10
+echo "start installations"
 apt-get update -qq
 apt-get -f install 
 
@@ -7,10 +101,10 @@ if which java >/dev/null; then
     echo "skip add-apt-repository for oracle java"
 	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 else
+	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 	apt-get install python-software-properties
 	add-apt-repository ppa:webupd8team/java
 	apt-get update -qq
-	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 fi
 
 #apt-get install oracle-java7-installer
@@ -20,16 +114,17 @@ apt-get install htop
 apt-get install git-core
 apt-get -f install 
 # generate ssh keys replace it with your email address
-if [ -f /home/vagrant/.ssh/id_rsa.pub ]; then
+if [ -f /home/vagrant/.ssh/config ]; then
 	echo "skip generate ssh key"
 else
 	echo "generate ssh key that have to be uploaded to github"
 	ssh-keygen -t rsa -C "pussinboots666@googlemail.com"
-	chmod 600 .ssh/*
 	# solve the ssh github problem see https://help.github.com/articles/using-ssh-over-the-https-port#enabling-ssh-connections-over-https
 	echo "Host github.com
 	  Hostname ssh.github.com
-	  Port 443" > .ssh/config
+	  Port 443" > /home/vagrant/.ssh/config
+	chown vagrant:vagrant /home/vagrant/.ssh/config
+	chmod 600 .ssh/*
 fi
 # download idea 13
 if [ -d "/home/vagrant/workspace/devel/idea" ]; then
@@ -44,11 +139,24 @@ else
 	tar xvfz ideaIU-13.1.3.tar.gz
 fi
 
-if [ ! -d "/home/vagrant/workspace/devel/play" ]; then
+# install sublime 3
+if which cs >/dev/null; then
+    echo "skip sublime 3 installation"
+else
+	echo "sublime 3 installation"
+	add-apt-repository ppa:webupd8team/sublime-text-3
+	apt-get update -qq
+	apt-get install sublime-text-installer
+fi
+
+if [ -d "/home/vagrant/workspace/devel/play" ]; then
+    echo "skip play 2.2.3 installation"
+else
 	echo "install play 2.2.3"
 	mkdir -p /home/vagrant/workspace/devel/play
 	cd /home/vagrant/workspace/devel/play
 	wget http://downloads.typesafe.com/play/2.2.3/play-2.2.3.zip
+	cd /home/vagrant/workspace/devel/play
 	unzip play-2.2.3.zip
 	echo "export PATH=$PATH:/home/vagrant/workspace/devel/play/play-2.2.3" > /etc/profile.d/play.sh
 	chmod a+x /etc/profile.d/play.sh
@@ -70,6 +178,7 @@ cd /tmp
 if which sbt >/dev/null; then
 	echo "skip sbt installation"
 else
+	#has java dependency which will be installable manual with sudo apt-get -f install
 	echo "sbt installation"
 	wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb >>wgeterr.log
 	# install sbt
@@ -84,6 +193,7 @@ apt-get -f install
 if which heroku >/dev/null; then
     echo "skip heroku installation"
 else
+	echo "heroku installation"
 	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 fi
 
@@ -92,7 +202,7 @@ cd /home/vagrant/
 chown -R vagrant:vagrant workspace
 
 #install nvm nodejs
-if which nvm >/dev/null; then
+if su -l vagrant -c "nvm >/dev/null"; then
     echo "skip nodejs installation"
 else
 	echo "nodejs installation"
@@ -160,4 +270,5 @@ fi
 if which softcover >/dev/null; then
     echo "check if the softcover dependencies are satisfied"
 	su -l vagrant -c "softcover check"
+
 fi
