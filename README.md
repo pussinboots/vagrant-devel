@@ -16,6 +16,10 @@ can be used. Has to be done for every terminal. Maybe someone has a complete sol
 Easy to setup Ubuntu based development environment. The complete new setup of development machine cause me in the past some headaches
 because i couldn't rember how to setup some specific development tools like sbt or so. And accidently i removed sometimes my complete adapted development vm. So i decided to automate this setup completly so i will have problem anymore to setup a clean full development environment that contains all tools i loved and i need. Feel free to fork this repository and adapt it to your own needs maybe it is possible to setup a page like vagrantcloud did where every developer can upload his development environment based on vagrant.
 
+##Contribute
+
+During this setup it rise the idea to launch a service where developer can search for vagrant boxes that offer a complete environment for programming language x or project x. So that it easy to build a project by just start the vagrant box for it and begin with development. Please contact me pussinboots666@googlemail.com if you like this idea and maybe want to contribute on it.
+
 ##Todo
 
 * by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
