@@ -26,7 +26,7 @@ During this setup it rise the idea to launch a service where developer can searc
 
 ##Requirements
 
-* installed [vagrant](http://www.vagrantup.com/downloads.html)
+* installed [vagrant](http://www.vagrantup.com/downloads.html) > 1.5
 * installed [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) ```vagrant plugin install vagrant-vbguest```
 * installed [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
