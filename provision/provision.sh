@@ -141,7 +141,7 @@ else
 	echo "calibre installation"
 	su -l vagrant -c "wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c \"import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()\""
 fi
-if [ -d "/home/vagrant/epubcheck-3.0" ]; then
+if [ -d "/home/vagrant/bin/epubcheck-3.0" ]; then
 	echo "skip epubcheck installation"
 else
 	echo "install epubcheck 3.0 for softcover"
@@ -150,7 +150,7 @@ else
 	chown -R vagrant:vagrant ./*
 	mv epubcheck-3.0/ bin/
 fi
-if [ -d "/home/vagrant/bin/kindlegen" ]; then
+if [ -f "/home/vagrant/bin/kindlegen" ]; then
 	echo "skip kindlegen installation"
 else
 	echo "install kindlegen for softcover"
@@ -159,4 +159,5 @@ fi
 
 if which softcover >/dev/null; then
     echo "check if the softcover dependencies are satisfied"
+	su -l vagrant -c "softcover check"
 fi
