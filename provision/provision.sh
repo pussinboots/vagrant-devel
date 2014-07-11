@@ -61,9 +61,9 @@ else
 fi
 
 if which softcover >/dev/null; then
-    echo "skip softcover installation"
+    echo "skip softcover-nonstop installation softcover fork see https://github.com/pussinboots/softcover"
 else
-	echo "softcover installation"
+	echo "softcover-nonstop installation softcover fork see https://github.com/pussinboots/softcover"
 fi
 
 echo "softcover dependency installation performed with apt-get"
@@ -235,7 +235,8 @@ if which softcover >/dev/null; then
 else
 	echo "softcover installation"
     yes "" | sudo apt-get install libcurl4-openssl-dev
-	sudo gem install softcover
+	#sudo gem install softcover
+	sudo gem install softcover-nonstop
 	su -l vagrant -c "softcover check"
 fi
 
