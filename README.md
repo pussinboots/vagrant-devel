@@ -114,7 +114,7 @@ Simple bash script that install follow things in that order
 
 * java 8 oracle jdk
 * git command ```apt-get install git-core```
-* idea 13 version from ```wget http://download.jetbrains.com/idea/ideaIU-13.1.3.tar.gz```
+* idea 13 (Ultimate Edition) from ```wget http://download.jetbrains.com/idea/ideaIU-13.1.3.tar.gz```
 * play 2.2.3 ```wget http://downloads.typesafe.com/play/2.2.3/play-2.2.3.zip```
 * conscript ```su -l vagrant -c "curl https://raw.githubusercontent.com/n8han/conscript/master/setup.sh | sh"```
 * sbt 0.13.5 ```wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb```
