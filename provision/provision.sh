@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if which java >/dev/null; then
-    echo "skip add-apt-repository for oracle java"
+    echo "skip java 8 oracle jdk installation"
 else
-	echo "apt repo addef for java now install manual with sudo apt-get -f install"
+	echo "install java 8 oracle jdk"
 fi
 
 if [ -f /home/vagrant/.ssh/config ]; then
@@ -61,9 +61,9 @@ else
 fi
 
 if which softcover >/dev/null; then
-    echo "skip softcover-nonstop installation softcover fork see https://github.com/pussinboots/softcover"
+    echo "skip softcover nonstop fork installation"
 else
-	echo "softcover-nonstop installation softcover fork see https://github.com/pussinboots/softcover"
+	echo "softcover installation"
 fi
 
 echo "softcover dependency installation performed with apt-get"
@@ -130,16 +130,16 @@ else
 	chmod 600 .ssh/*
 fi
 # download idea 13
-if [ -d "/home/vagrant/workspace/devel/idea" ]; then
+if [ -d "/home/vagrant/workspace/devel/idea/ideaIU-13.1.3" ]; then
     echo "skip idea 13 installation"
 else
 	echo "idea 13 installation"
 	mkdir -p /home/vagrant/workspace/devel/idea
 	cd /home/vagrant/workspace/devel/idea
-	cp /vagrant/ideaIU-13.1.3.tar.gz ./
-	#wget http://download.jetbrains.com/idea/ideaIU-13.1.3.tar.gz >>wgeterr.log
+	wget -nv http://download.jetbrains.com/idea/ideaIU-13.1.3.tar.gz
 	# unzip idea
 	tar xvfz ideaIU-13.1.3.tar.gz
+	rm ideaIU-13.1.3.tar.gz
 fi
 
 # install sublime 3
@@ -152,17 +152,19 @@ else
 	apt-get install sublime-text-installer
 fi
 
-if [ -d "/home/vagrant/workspace/devel/play" ]; then
+if which play >/dev/null; then
     echo "skip play 2.2.3 installation"
 else
 	echo "install play 2.2.3"
 	mkdir -p /home/vagrant/workspace/devel/play
 	cd /home/vagrant/workspace/devel/play
-	wget –nv http://downloads.typesafe.com/play/2.2.3/play-2.2.3.zip
+	wget -nv http://downloads.typesafe.com/play/2.2.3/play-2.2.3.zip
 	cd /home/vagrant/workspace/devel/play
 	unzip play-2.2.3.zip
+	rm play-2.2.3.zip
 	echo "export PATH=$PATH:/home/vagrant/workspace/devel/play/play-2.2.3" > /etc/profile.d/play.sh
 	chmod a+x /etc/profile.d/play.sh
+	su -l vagrant -c "export PATH=$PATH:/home/vagrant/workspace/devel/play/play-2.2.3"
 fi
 
 #install conscript
@@ -235,8 +237,8 @@ if which softcover >/dev/null; then
 else
 	echo "softcover installation"
     yes "" | sudo apt-get install libcurl4-openssl-dev
-	#sudo gem install softcover
 	sudo gem install softcover-nonstop --pre
+	#sudo gem install softcover
 	su -l vagrant -c "softcover check"
 fi
 
