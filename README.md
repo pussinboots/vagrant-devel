@@ -1,11 +1,17 @@
 vagrant-devel
 =============
 
-##base box upload in progress so if you use it than you have to specify a other base box see config.vm.box = "pussinboots/ubuntu-truly" in Vagrantfile
-
 Setup a ready to use vagrant box for Scala and nodejs with Ubuntu 14.04 base box. The base box only contains the 
 Ubuntu 14.04 truly version without any additional development packages. For the development packages there is a simple
 bash provider look into the provider folder. The vagrant base box is upload to [vagrantcloud.com](https://vagrantcloud.com/).
+
+##Base Box
+
+The base box is uploaded to google drive and can be downloaded by [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly). It is refrenced in the Vagrantfile
+```ruby
+config.vm.box = "pussinboots/ubuntu-truly"
+```
+that tells vagrant to download it from vagrantcloud by using the url mentioned above. The download can take a while the file is 1.9 GB big. 
 
 ##Login Shell Problem
 
@@ -57,9 +63,9 @@ Ubuntu 14.04 with default window manager (the 3d support for virtual box use sof
 
 1. clone this repo with ```git clone git@github.com:pussinboots/vagrant-devel.git```
 2. ```cd vagrant-devel```
-3. look into the Vagrantfile and adapt if it nessary like reduce or increase memory
+3. look into the Vagrantfile and adapt if it necessary like reduce or increase memory
 3. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things.
-4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time) the provision run  could also take a while because install jdk 8, idea, play and the complete texlive latex distribution (near 600 MB download)
+4. start up vagrant with ```vagrant up``` can take a while has to be download 1.9 GB base box (only first time) the provision run  could also take a while because install jdk 8, idea, play and the complete texlive latex distribution (near 600 MB download)
 
 ##Vagrantfile
 
