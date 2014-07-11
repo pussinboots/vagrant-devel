@@ -1,5 +1,5 @@
 description: Ubuntu 14.04 Desktop version that install all development tools with an provisioner shell script.
 provision: shell
-hint: The oracle jdk 8 installation is full automated and accept the license automated. To use npm perform su -l vagrant on the terminal.
+hint: The oracle jdk 8 installation is full automated and accept the license automated. To use npm perform su -l vagrant on the terminal. Maybe restart needed because new profile.d scripts will be added they take effect after restart.
 username: vagrant
 password: vagrant
