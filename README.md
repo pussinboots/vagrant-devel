@@ -25,6 +25,7 @@ During this setup it rise the idea to launch a service where developer can searc
 ##Todo
 
 * by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
+* install vbguest vagrant plugin automaticly with ```vagrant plugin install vagrant-vbguest```
 
 ##Requirements
 
