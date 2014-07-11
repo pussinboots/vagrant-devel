@@ -236,7 +236,7 @@ else
 	echo "softcover installation"
     yes "" | sudo apt-get install libcurl4-openssl-dev
 	#sudo gem install softcover
-	sudo gem install softcover-nonstop
+	sudo gem install softcover-nonstop --pre
 	su -l vagrant -c "softcover check"
 fi
 
