@@ -59,9 +59,7 @@ Ubuntu 14.04 with default window manager (the 3d support for virtual box use sof
 2. ```cd vagrant-devel```
 3. look into the Vagrantfile and adapt if it nessary like reduce or increase memory
 3. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things.
-4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time) and the first run of the provisioner will fail because java installation need your interaction
-6. you should see a virtual box popup with the started vm login and perform ```sudo apt-get -f install``` say yes
-7. start provision explicit ```vagrant provision``` second time this will install the rest could also take a while because install idea, play and the complete texlive latex distribution (near 600 MB download)
+4. start up vagrant with ```vagrant up``` can take a while has to be download 1.2 GB base box (only first time) the provision run  could also take a while because install jdk 8, idea, play and the complete texlive latex distribution (near 600 MB download)
 
 ##Vagrantfile
 
