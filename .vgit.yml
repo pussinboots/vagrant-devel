@@ -1,5 +1,5 @@
 description: Ubuntu 14.04 Desktop version that install all development tools with an provisioner shell script.
 provision: shell
-hint: The first run of the provioner script with vagrant up will fail because oracle 8 jdk installation needs user interaction so if the virtualbox is started login and perform sudo apt-get -f install than wait until this installation is finished and start provision again with vgit --repo (project repo) --prov. To use npm perform su -l vagrant on the terminal.
+hint: The oracle jdk 8 installation is full automated and accept the license automated. To use npm perform su -l vagrant on the terminal.
 username: vagrant
 password: vagrant
