@@ -1,9 +1,15 @@
 #!/bin/sh
 
 if which java >/dev/null; then
-    echo "skip java 8 oracle jdk installation"
+    	echo "skip java 8 oracle jdk installation"
 else
 	echo "install java 8 oracle jdk"
+fi
+
+if which createrepo >/dev/null; then
+	echo "skip createrepo and rpm built tool installation"
+else
+	echo "createrepo and rpm built tool installation"
 fi
 
 if [ -f /home/vagrant/.ssh/config ]; then
@@ -98,8 +104,7 @@ apt-get update -qq
 apt-get -f install 
 
 if which java >/dev/null; then
-    echo "skip add-apt-repository for oracle java"
-	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
+    	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 else
 	echo "the installation with apt-get install oracle-java8-installer has to perfomed manual"
 	apt-get install python-software-properties
@@ -108,6 +113,14 @@ else
 	echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 	echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
 	apt-get install --yes oracle-java8-installer
+fi
+
+if which createrepo >/dev/null; then
+	echo "skip createrepo and rpm built tool installation"
+else
+	echo "createrepo and rpm built tool installation"
+	apt-get install createrepo
+	apt-get install rpm
 fi
 
 #apt-get install oracle-java7-installer
