@@ -117,6 +117,8 @@ vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
 Simple bash script that install follow things in that order
 
 * java 8 oracle jdk
+* rpm build tool ```apt-get install rpm```
+* createrepo command ```apt-get install createrepo```
 * git command ```apt-get install git-core```
 * idea 13 (Ultimate Edition) from ```wget http://download.jetbrains.com/idea/ideaIU-13.1.3.tar.gz```
 * play 2.2.3 ```wget http://downloads.typesafe.com/play/2.2.3/play-2.2.3.zip```
