@@ -3,3 +3,5 @@ provision: shell
 hint: The oracle jdk 8 installation is full automated and accept the license automated. To use npm perform su -l vagrant on the terminal. Maybe restart needed because new profile.d scripts will be added they take effect after restart.
 username: vagrant
 password: vagrant
+size: 1.9 GB
+image: https://vagrantcloud.com/pussinboots/ubuntu-truly
