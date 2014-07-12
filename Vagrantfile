@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "pussinboots/ubuntu-truly"
   config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
   config.vm.provision :shell, :path => "provision/provision.sh", :args => [ENV['project'], ENV['project-dependencies']]
- 
+   
   config.vm.provider :virtualbox do |vb|
 	vb.gui = true
 	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
