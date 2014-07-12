@@ -18,7 +18,7 @@ else
 	echo "generate ssh key that have to be uploaded to github"
 fi
 
-if [ -d "/home/vagrant/workspace/devel/idea" ]; then
+if [ -d "/home/vagrant/workspace/devel/idea/idea-IU-135.909" ]; then
     echo "skip idea 13 installation"
 else
 	echo "idea 13 installation"
@@ -119,8 +119,8 @@ if which createrepo >/dev/null; then
 	echo "skip createrepo and rpm built tool installation"
 else
 	echo "createrepo and rpm built tool installation"
-	apt-get install createrepo
-	apt-get install rpm
+	yes "" | apt-get install createrepo
+	yes "" | apt-get install rpm
 fi
 
 #apt-get install oracle-java7-installer
@@ -143,7 +143,7 @@ else
 	chmod 600 .ssh/*
 fi
 # download idea 13
-if [ -d "/home/vagrant/workspace/devel/idea/ideaIU-13.1.3" ]; then
+if [ -d "/home/vagrant/workspace/devel/idea/idea-IU-135.909" ]; then
     echo "skip idea 13 installation"
 else
 	echo "idea 13 installation"
