@@ -13,6 +13,8 @@ config.vm.box = "pussinboots/ubuntu-truly"
 ```
 that tells vagrant to download it from vagrantcloud by using the url mentioned above. The download can take a while the file is 1.9 GB big. 
 
+A tutorial to create a vagrant base box look [here](https://docs.vagrantup.com/v2/boxes/base.html).
+
 ##Login Shell Problem
 
 There is a problem with nodejs and npm when you open a terminal.
@@ -40,11 +42,7 @@ During this setup it rise the idea to launch a service where developer can searc
 * installed [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) ```vagrant plugin install vagrant-vbguest```
 * installed [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
-##Base Box
-
-A tutorial to create a vagrant base box look [here](https://docs.vagrantup.com/v2/boxes/base.html).
-
-###Vagrant
+##Vagrant
 
 * setup with the ssh key used by vagrant 
 * no chef or puppet installed
