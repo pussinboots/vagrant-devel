@@ -7,9 +7,9 @@ bash provider look into the provider folder. The vagrant base box is upload to [
 
 ##Base Box
 
-The base box is uploaded to google drive and can be downloaded by [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly). It is refrenced in the Vagrantfile
+The base box is uploaded to google drive and can be downloaded by [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly-jdk8). It is refrenced in the Vagrantfile
 ```ruby
-config.vm.box = "pussinboots/ubuntu-truly"
+config.vm.box = "pussinboots/ubuntu-truly-jdk8"
 ```
 that tells vagrant to download it from vagrantcloud by using the url mentioned above. The download can take a while the file is 1.9 GB big. 
 
@@ -65,13 +65,13 @@ Ubuntu 14.04 with default window manager (the 3d support for virtual box use sof
 3. adapte the provision.sh file for your needs i tried to setup it readable and could be run several time only install missing things.
 4. start up vagrant with ```vagrant up``` can take a while has to be download 1.9 GB base box (only first time) the provision run  could also take a while because install jdk 8, idea, play and the complete texlive latex distribution (near 600 MB download)
 
-##Vagrantfile
+##Vagrant
 
 Short explanation of the used Vagrantfile.
 ```ruby
 Vagrant.configure("2") do |config|
   
-  config.vm.box = "pussinboots/ubuntu-truly"
+  config.vm.box = "pussinboots/ubuntu-truly-jdk8"
   config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
   config.vm.provision :shell, :path => "provision/provision.sh", :args => [ENV['project'], ENV['project-dependencies']]
    
@@ -117,6 +117,10 @@ Mount the vagrant shared folder as [nfs](https://docs.vagrantup.com/v2/synced-fo
 ```ruby
 config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
 ```
+
+###Base Box
+
+After some days of reasearch i could build the new [ubuntu-truly-jdk8](https://vagrantcloud.com/pussinboots/ubuntu-truly-jdk8) that is only 1 GB big instead of 1.9 GB. I found the [bento](https://github.com/opscode/bento) repository which is based on [packer](http://www.packer.io/) that offer a couple of linux distribution to build smaller vagrant boxes by remove needless software packages and does some tricks like fill empty disk image spaces with zero values. I will upload the packer files and a squid setup to cache deb packages and other downloads during system installation with packer. This squid cache can speed up building multiple vagrant boxes dramaticly also could for debuging purpose sometime i have to build the same box 10 times to opmitise and customize setup.
 
 ###Project Dependency Provision
 
