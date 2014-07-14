@@ -1,0 +1,57 @@
+{
+  "builders": [
+    {
+	  "type": "virtualbox-ovf",
+	  "source_path": "virtualbox/box.ovf",
+	  "ssh_username": "vagrant",
+	  "ssh_password": "vagrant",
+	  "ssh_wait_timeout": "1200s",
+	  "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+	  "headless": true
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "../builds/{{.Provider}}/opscode_ubuntu-14.04_chef-{{user `chef_version`}}.box",
+      "type": "vagrant",
+	  "compression_level":9
+    }
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "CHEF_VERSION={{user `chef_version`}}"
+      ],
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+		"scripts/common/proxy.sh",
+		"scripts/ubuntu/update.sh",
+        "scripts/common/sshd.sh",
+        "scripts/ubuntu/networking.sh",
+        "scripts/ubuntu/sudoers.sh",
+        "scripts/common/vagrant.sh",
+		"scripts/common/chef.sh",
+		"scripts/ubuntu/cleanup.sh",
+		"scripts/ubuntu/provision.sh",
+		"scripts/ubuntu/full_provision.sh",
+		"scripts/ubuntu/packages/rpm.sh",
+		"scripts/ubuntu/packages/createrepo.sh",
+		"scripts/ubuntu/packages/idea13.sh",
+		"scripts/ubuntu/packages/sublime3.sh",
+		"scripts/ubuntu/packages/play223.sh",
+		"scripts/ubuntu/packages/sbt.sh",
+		"scripts/ubuntu/packages/heroku.sh",
+		"scripts/ubuntu/packages/nodejs.sh",
+		"scripts/ubuntu/packages/travis.sh",
+		"scripts/ubuntu/packages/flashback.sh",
+		"scripts/ubuntu/packages/softcover-nonstop.sh",
+        "scripts/common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "chef_version": "provisionerless",
+    "mirror": "http://releases.ubuntu.com"
+  }
+}
