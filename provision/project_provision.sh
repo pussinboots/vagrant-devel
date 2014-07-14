@@ -1,6 +1,5 @@
 #!/bin/bash
-project=$1
-PROJECT_DEPENDENCIES=$2
+PROJECT_DEPENDENCIES=$1
 echo "project is $project"
 PROVISION_DEPS=$PROJECT_DEPENDENCIES
 
