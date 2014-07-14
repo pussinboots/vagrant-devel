@@ -11,7 +11,7 @@ The base box is uploaded to google drive and can be downloaded by [vagrantcloud]
 ```ruby
 config.vm.box = "pussinboots/ubuntu-truly-jdk8"
 ```
-that tells vagrant to download it from vagrantcloud by using the url mentioned above. The download can take a while the file is 1.9 GB big. 
+that tells vagrant to download it from vagrantcloud by using the url mentioned above. The download can take a while the file is 1.0 GB big. 
 
 A tutorial to create a vagrant base box look [here](https://docs.vagrantup.com/v2/boxes/base.html).
 
