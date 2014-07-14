@@ -5,3 +5,8 @@ username: vagrant
 password: vagrant
 size: 1.9 GB
 image: https://vagrantcloud.com/pussinboots/ubuntu-truly
+packages:
+    - java8
+    - sbt
+    - rpm
+    - createrepo

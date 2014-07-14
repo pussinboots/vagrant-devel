@@ -33,7 +33,7 @@ During this setup it rise the idea to launch a service where developer can searc
 ##Todo
 
 * silent installation of oracle jdk 8 that automaticly accept licenese (done)
-* by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision
+* by using the clean base box the setup could take while to install all software maybe offer a complete basebox but than it contains all and it can not be adapted like this approach with provision (done [vagrant-devel-full](https://github.com/pussinboots/vagrant-devel-full))
 * install vbguest vagrant plugin automaticly with ```vagrant plugin install vagrant-vbguest```
 
 ##Requirements
@@ -72,8 +72,9 @@ Short explanation of the used Vagrantfile.
 Vagrant.configure("2") do |config|
   
   config.vm.box = "pussinboots/ubuntu-truly"
-  config.vm.provision :shell, :path => "provision/provision.sh"
- 
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
+  config.vm.provision :shell, :path => "provision/provision.sh", :args => [ENV['project'], ENV['project-dependencies']]
+   
   config.vm.provider :virtualbox do |vb|
 	vb.gui = true
 	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -83,7 +84,7 @@ Vagrant.configure("2") do |config|
 	vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
 	vb.customize ["modifyvm", :id, "--ioapic", "on"]
 	vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
-	vb.customize ["modifyvm", :id, "--clipboard ", "bidirectional"]
+	vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
 	vb.memory = 3072
 	vb.cpus = 2
   end
@@ -112,9 +113,55 @@ vb.customize ["modifyvm", :id, "--ioapic", "on"]
 vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
 ```
 
-##Provisioner
+Mount the vagrant shared folder as [nfs](https://docs.vagrantup.com/v2/synced-folders/nfs.html) (should be faster than the default file system) and change the director and file permission from 777 to 755 cause some problem with npm for example the mocha test of th e [heroku-softcover](https://github.com/pussinboots/heroku-softcover) project fails after change the permission everything is fine. The project was checked out to the shared folder. Use shared folder for github project and development has some drawbacks but that can be solved look [symlink support on shared folders](https://github.com/pussinboots/vagrant-git#requirements) for example. My vagrant tool [vagrant-git](https://github.com/pussinboots/vagrant-git) clone all projects into the shared folder so i need a working share folder.
+```ruby
+config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
+```
 
-Simple bash script that install follow things in that order
+###Project Dependency Provision
+
+I setup a provision script which gets to install packages from the ```ENV['projectDependencies']``` environment variable. So that make it possible to specify which packages has to be installed outside the vagrant setup itself but of course the shell provisione has to know how to deal with this defined packages.
+```ruby
+config.vm.provision :shell, :path => "provision/provision.sh", :args => [ENV['project'], ENV['projectDependencies']]
+```
+
+The following script handle the passed projectDependencies environment variable and transform it to an string array that contains each specified dependency. Than it call the related install script, to keep things simple the called filename is the name of the  dependency itself with just .sh suffix. So that is all. This dependency scripts can be found [here](https://github.com/pussinboots/vagrant-devel/tree/master/provision/packages). Will be more in the future the installation script code is almost there in the old [fullprovision.sh](https://github.com/pussinboots/vagrant-devel/blob/master/provision/full_provision.sh) file. If no projectDependenccies was specified for the provision run than the full provision script will be executed for backward compatibility.
+
+```bash
+#!/bin/bash
+project=$1
+PROJECT_DEPENDENCIES=$2
+echo "project is $project"
+PROVISION_DEPS=$PROJECT_DEPENDENCIES
+DEPS=(`echo $PROVISION_DEPS | tr ";" "\n"`)
+echo "project dependencies $PROVISION_DEPS"
+for package in "${DEPS[@]}"
+do
+sh /vagrant/provision/packages/$package.sh
+done
+```
+
+This Project Dependency Provision approach could also be used with other provisioner i guess because in the end what the provisioner has to do is to analyze the passed projectDependencies env variable and resolve its defined dependencies. I choose shell script because i'am not so familiar with the puppet and chef provisioning. 
+
+This feature is used by the [vagrant-git](https://github.com/pussinboots/vagrant-git/) tool but can also be used directly with vagrant.
+
+Windows example
+```bash
+set projectDependencies="java8,nodejs,sbt"
+vagrant provision
+```
+
+##Shell Provisioner
+
+They are two shell provisioners one that install everything that is listed below and the second can be configured to install only a subset of the packages below. But both provisioner are designed to run multiple times and only install things they are missing. The perform three different checks before install something
+
+```bash
+if [ -d "/home/vagrant/bin/epubcheck-3.0" ]; then
+if [ -f "/home/vagrant/bin/kindlegen" ]; then
+if which java >/dev/null; 
+```
+
+The full provision script will install follow things in that order
 
 * java 8 oracle jdk
 * rpm build tool ```apt-get install rpm```
