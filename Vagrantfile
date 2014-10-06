@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   
-  config.vm.box = "pussinboots/ubuntu-truly-jdk8"
+  config.vm.box = "pussinboots/ubuntu-truly"
   config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ["dmode=755","fmode=755"]
   config.vm.provision :shell, :path => "provision/provision.sh", :args => [ENV['projectDependencies']||'']
    
