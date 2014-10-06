@@ -165,7 +165,10 @@ if [ -f "/home/vagrant/bin/kindlegen" ]; then
 if which java >/dev/null; 
 ```
 
-The full provision script will install follow things in that order
+###Full Provisioner
+
+The code can be found [here](https://github.com/pussinboots/vagrant-devel/blob/master/provision/project_provision.sh).
+The full provision script will install follow things in that order.
 
 * java 8 oracle jdk
 * rpm build tool ```apt-get install rpm```
@@ -186,3 +189,11 @@ The full provision script will install follow things in that order
 * calibre ```su -l vagrant -c "python -c \"import sys; py3 = sys.version_info[0] > 2; u = __import__('urllib.request' if py3 else 'urllib', fromlist=1); exec(u.urlopen('http://status.calibre-ebook.com/linux_installer').read()); main(install_dir='`echo ~`')\""```
 * epubcheck ```curl -O -L https://github.com/IDPF/epubcheck/releases/download/v3.0/epubcheck-3.0.zip && unzip epubcheck-3.0.zip```
 * kindlegen ```curl -o /home/vagrant/bin http://softcover-binaries.s3.amazonaws.com/kindlegen && chmod +x /home/vagrant/bin/kindlegen```
+
+###The dynamic shell provisioner
+
+Above mentioned as second provisioner. The code can be found [here](https://github.com/pussinboots/vagrant-devel/blob/master/provision/project_provision.sh). It takes a list of dependencies to install. The dependency name refer to a file in the [provision/packages](https://github.com/pussinboots/vagrant-devel/tree/master/provision) folder. For example the passed depenencies list is that string.
+```
+"sbt nodejs"
+```
+That result in the execution of the (sbt.sh)[https://github.com/pussinboots/vagrant-devel/blob/master/provision/packages/sbt.sh] file and the (nodejs.sh)[https://github.com/pussinboots/vagrant-devel/blob/master/provision/packages/nodejs.sh] file. This provisioner is used by the (vagrant-git)[https://github.com/pussinboots/vagrant-git] project to implemnts dynamicly fetching of project runtime and build dependencies and install it in the project used vagrant-box.
