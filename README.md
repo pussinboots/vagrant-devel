@@ -1,6 +1,13 @@
 vagrant-devel
 =============
 
+This github repository is used by a tool called vagrant-git. That start vagrant boxes for a certain github project. It is defined in the .vgit.yaml file.
+
+Projects that use this box for development look in the .vagrant.yml file in that project to see which vagrant
+box willbe used to setupt the development box with vagrant-git
+* [angularjs-crypto](https://github.com/pussinboots/angularjs-crypto)
+* [vagrant-git](https://github.com/pussinboots/vagrant-git)
+
 Setup a ready to use vagrant box for Scala and nodejs with Ubuntu 14.04 base box. The base box only contains the 
 Ubuntu 14.04 truly version without any additional development packages. For the development packages there is a simple
 bash provider look into the provider folder. The vagrant base box is upload to [vagrantcloud.com](https://vagrantcloud.com/).
