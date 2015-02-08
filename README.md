@@ -4,7 +4,7 @@ vagrant-devel
 This github repository is used by a tool called vagrant-git. That start vagrant boxes for a certain github project. It is defined in the .vgit.yaml file.
 
 Projects that use this box for development look in the .vagrant.yml file in that project to see which vagrant
-box willbe used to setupt the development box with vagrant-git
+box will be used to setup the development box with vagrant-git
 * [angularjs-crypto](https://github.com/pussinboots/angularjs-crypto)
 * [vagrant-git](https://github.com/pussinboots/vagrant-git)
 
@@ -14,7 +14,7 @@ bash provider look into the provider folder. The vagrant base box is upload to [
 
 ##Base Box
 
-The base box is uploaded to google drive and can be downloaded by [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly-jdk8). It is refrenced in the Vagrantfile
+The base box is uploaded to dropbox drive and can be downloaded by [vagrantcloud](https://vagrantcloud.com/pussinboots/ubuntu-truly-jdk8). It is refrenced in the Vagrantfile
 ```ruby
 config.vm.box = "pussinboots/ubuntu-truly-jdk8"
 ```
@@ -30,8 +30,7 @@ can be used. Has to be done for every terminal. Maybe someone has a complete sol
 
 ##Motivation
 
-Easy to setup Ubuntu based development environment. The complete new setup of development machine cause me in the past some headaches
-because i couldn't rember how to setup some specific development tools like sbt or so. And accidently i removed sometimes my complete adapted development vm. So i decided to automate this setup completly so i will have problem anymore to setup a clean full development environment that contains all tools i loved and i need. Feel free to fork this repository and adapt it to your own needs maybe it is possible to setup a page like vagrantcloud did where every developer can upload his development environment based on vagrant.
+Easy to setup Ubuntu based development environment. The complete new setup of development machine cause me in the past some headaches because i couldn't rember how to setup some specific development tools like sbt or so. And accidently i removed sometimes my complete adapted development vm. So i decided to automate this setup completly so i will have problem anymore to setup a clean full development environment that contains all tools i loved and i need. Feel free to fork this repository and adapt it to your own needs maybe it is possible to setup a page like vagrantcloud did where every developer can upload his development environment based on vagrant.
 
 ##Contribute
 
