@@ -4,7 +4,7 @@ if which java >/dev/null; then
    	echo "skip java 8 installation"
 else
 	echo "java 8 installation"
-	apt-get install python-software-properties
+	apt-get install --yes python-software-properties
 	add-apt-repository ppa:webupd8team/java
 	apt-get update -qq
 	echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
