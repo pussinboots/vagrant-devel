@@ -173,7 +173,7 @@ if which java >/dev/null;
 
 ###Full Provisioner
 
-The code can be found [here](https://github.com/pussinboots/vagrant-devel/blob/master/provision/project_provision.sh).
+The code can be found [here](https://github.com/pussinboots/vagrant-devel/blob/master/provision/full_provision.sh).
 The full provision script will install follow things in that order.
 
 * java 8 oracle jdk
