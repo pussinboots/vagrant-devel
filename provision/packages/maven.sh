@@ -6,5 +6,5 @@ if which mvn >/dev/null; then
 else
 	echo "maven installation"
 	apt-get update
-	apt-get install maven
+	apt-get install --yes maven
 fi
